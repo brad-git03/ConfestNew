@@ -718,13 +718,56 @@ body::before {
 .filter-tab:hover, .filter-tab.active { border-color: var(--crimson); background: var(--crimson); color: white; }
 
 /* AUTH */
-.auth-page { min-height: 100vh; background: var(--g-split); display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; position: relative; overflow: hidden; }
-.auth-page::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='80' viewBox='0 0 60 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='42' rx='14' ry='20' fill='none' stroke='rgba(212,146,10,0.07)' stroke-width='1'/%3E%3Cline x1='30' y1='12' x2='30' y2='22' stroke='rgba(212,146,10,0.07)' stroke-width='1'/%3E%3C/svg%3E") repeat; background-size: 60px 80px; }
-.auth-card { background: var(--cream); border-radius: 20px; padding: 2.25rem; width: 100%; max-width: 440px; box-shadow: 0 40px 80px rgba(18,8,8,0.4); position: relative; z-index: 2; border: 1px solid rgba(212,146,10,0.15); }
-.auth-logo { text-align: center; margin-bottom: 1.75rem; }
-.divider { display: flex; align-items: center; gap: 0.875rem; margin: 1.1rem 0; }
-.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(212,146,10,0.15); }
-.divider span { font-size: 0.68rem; color: var(--sage); font-weight: 700; letter-spacing: 0.08em; }
+/* AUTH - SPLIT PANEL (matches login.html) */
+.auth-page { min-height:100vh; background:var(--bone); display:flex; align-items:center; justify-content:center; padding:2rem; position:relative; }
+.auth-page::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg width='60' height='80' viewBox='0 0 60 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='42' rx='14' ry='20' fill='none' stroke='rgba(212,146,10,0.04)' stroke-width='1'/%3E%3C/svg%3E") repeat; background-size:60px 80px; pointer-events:none; }
+
+.auth-split { display:grid; grid-template-columns:1fr 1.1fr; width:100%; max-width:1000px; min-height:660px; border-radius:24px; overflow:hidden; box-shadow:0 40px 100px rgba(18,8,8,0.28), 0 8px 32px rgba(18,8,8,0.14); position:relative; z-index:1; }
+
+/* LEFT PANEL */
+.auth-left { background:var(--g-split); position:relative; display:flex; flex-direction:column; justify-content:center; padding:3.5rem 3rem; overflow:hidden; }
+.auth-left::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg width='60' height='80' viewBox='0 0 60 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='42' rx='14' ry='20' fill='none' stroke='rgba(212,146,10,0.05)' stroke-width='1'/%3E%3Cline x1='30' y1='12' x2='30' y2='22' stroke='rgba(212,146,10,0.05)' stroke-width='1'/%3E%3C/svg%3E") repeat; background-size:60px 80px; }
+.auth-deco { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.auth-deco span { position:absolute; border-radius:100px; }
+.auth-deco span:nth-child(1)  { width:180px; height:52px; background:linear-gradient(135deg,#8B0000,#C41E3A,#D4920A); opacity:0.55; top:8%;    left:-40px;  transform:rotate(-22deg); animation:driftA 8s  ease-in-out infinite; }
+.auth-deco span:nth-child(2)  { width:110px; height:34px; background:linear-gradient(135deg,#C41E3A,#F0B429);           opacity:0.45; top:20%;   left:52%;    transform:rotate(14deg);  animation:driftB 10s ease-in-out infinite 1s; }
+.auth-deco span:nth-child(3)  { width:220px; height:62px; background:linear-gradient(135deg,#8B0000,#C41E3A);           opacity:0.40; bottom:22%; left:-50px;  transform:rotate(-12deg); animation:driftA 12s ease-in-out infinite 0.5s; }
+.auth-deco span:nth-child(4)  { width:75px;  height:24px; background:linear-gradient(135deg,#D4920A,#F0B429);           opacity:0.50; bottom:38%; right:6%;    transform:rotate(28deg);  animation:driftB 7s  ease-in-out infinite 2s; }
+.auth-deco span:nth-child(5)  { width:130px; height:40px; background:linear-gradient(135deg,#C41E3A,#D4920A);           opacity:0.35; top:52%;   left:22%;    transform:rotate(-6deg);  animation:driftA 11s ease-in-out infinite 1.5s; }
+.auth-deco span:nth-child(6)  { width:55px;  height:18px; background:linear-gradient(135deg,#8B0000,#C41E3A);           opacity:0.45; top:38%;   left:8%;     transform:rotate(38deg);  animation:driftB 6s  ease-in-out infinite 3s; }
+.auth-deco span:nth-child(7)  { width:150px; height:44px; background:linear-gradient(135deg,#1B3A2D,#4A7C5F);           opacity:0.40; bottom:10%; left:18%;    transform:rotate(10deg);  animation:driftA 13s ease-in-out infinite 2s; }
+.auth-deco span:nth-child(8)  { width:85px;  height:26px; background:linear-gradient(135deg,#2D5A3D,#6B9E7A);           opacity:0.35; top:70%;   right:4%;    transform:rotate(-18deg); animation:driftB 8s  ease-in-out infinite 0.8s; }
+.auth-deco span:nth-child(9)  { width:60px;  height:18px; background:linear-gradient(135deg,#D4920A,#F0B429);           opacity:0.45; top:62%;   left:62%;    transform:rotate(20deg);  animation:driftA 9s  ease-in-out infinite 1.2s; }
+.auth-deco span:nth-child(10) { width:95px;  height:28px; background:linear-gradient(135deg,#8B0000,#D4920A);           opacity:0.30; bottom:30%; left:38%;    transform:rotate(-30deg); animation:driftB 11s ease-in-out infinite 0.3s; }
+@keyframes driftA { 0%,100%{transform:rotate(-22deg) translateY(0)}  50%{transform:rotate(-22deg) translateY(-16px)} }
+@keyframes driftB { 0%,100%{transform:rotate(14deg)  translateY(0)}  50%{transform:rotate(14deg)  translateY(12px)} }
+
+.auth-left-glow-fire { position:absolute; top:15%; right:-8%;  width:300px; height:300px; background:radial-gradient(ellipse,rgba(196,30,58,0.20) 0%,transparent 70%); pointer-events:none; z-index:0; }
+.auth-left-glow-eco  { position:absolute; bottom:8%; left:-8%;  width:260px; height:260px; background:radial-gradient(ellipse,rgba(27,58,45,0.30) 0%,transparent 70%);  pointer-events:none; z-index:0; }
+.auth-left-content { position:relative; z-index:1; }
+.auth-left-eyebrow { display:inline-flex; align-items:center; gap:0.45rem; background:rgba(212,146,10,0.12); border:1px solid rgba(212,146,10,0.3); color:var(--amber); padding:0.3rem 0.85rem; border-radius:4px; font-size:0.6rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:1.6rem; }
+.auth-left-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:900; color:white; line-height:1.15; margin-bottom:1rem; }
+.auth-left-title em { font-style:italic; background:linear-gradient(135deg,#FFD080,#FF8040); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.auth-left-desc { color:rgba(200,221,208,0.65); font-size:0.87rem; line-height:1.75; margin-bottom:2rem; }
+.auth-left-perks { list-style:none; display:flex; flex-direction:column; gap:0.7rem; }
+.auth-left-perks li { display:flex; align-items:center; gap:0.65rem; font-size:0.83rem; color:rgba(200,221,208,0.75); }
+.auth-left-perks li span.perk-icon { width:28px; height:28px; border-radius:8px; background:rgba(212,146,10,0.14); border:1px solid rgba(212,146,10,0.25); display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
+
+/* RIGHT PANEL */
+.auth-right { background:var(--cream); display:flex; align-items:center; justify-content:center; padding:2.5rem 2.75rem; position:relative; z-index:2; overflow-y:auto; }
+.auth-card { width:100%; max-width:420px; }
+.auth-logo { text-align:left; margin-bottom:1.5rem; }
+.auth-card-title { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--ink); margin-bottom:0.3rem; }
+.auth-card-sub { font-size:0.82rem; color:var(--sage); margin-bottom:1.5rem; }
+.divider { display:flex; align-items:center; gap:0.875rem; margin:1.1rem 0; }
+.divider::before, .divider::after { content:''; flex:1; height:1px; background:rgba(212,146,10,0.15); }
+.divider span { font-size:0.68rem; color:var(--sage); font-weight:700; letter-spacing:0.08em; }
+@media(max-width:820px) {
+  .auth-split { grid-template-columns:1fr; max-width:480px; }
+  .auth-left  { display:none; }
+  .auth-right { padding:2.5rem 2rem; }
+  .auth-logo  { text-align:center; }
+}
 
 /* TOAST */
 .toast { position: fixed; bottom: 1.75rem; right: 1.75rem; background: var(--ink); color: var(--bone); padding: 0.875rem 1.3rem; border-radius: 10px; box-shadow: 0 10px 40px rgba(18,8,8,0.35); z-index: 9999; display: flex; align-items: center; gap: 0.65rem; transform: translateY(80px); opacity: 0; transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); border-left: 3px solid var(--gold); max-width: 330px; font-size: 0.82rem; font-weight: 600; }
@@ -786,69 +829,99 @@ body::before {
 </head>
 <body>
 <div class="auth-page">
-  <div class="auth-card" style="max-width:480px">
-    <div class="auth-logo">
-      <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;margin-bottom:0.4rem">
-        <svg width="200" height="44" viewBox="0 0 200 44" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="al-fire" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#8B0000"/>
-              <stop offset="45%" style="stop-color:#C41E3A"/>
-              <stop offset="100%" style="stop-color:#D4920A"/>
-            </linearGradient>
-            <linearGradient id="al-eco" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#1B3A2D"/>
-              <stop offset="100%" style="stop-color:#4A7C5F"/>
-            </linearGradient>
-            <linearGradient id="al-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#D4920A"/>
-              <stop offset="100%" style="stop-color:#F0B429"/>
-            </linearGradient>
-          </defs>
-          <g transform="translate(2,2)">
-            <ellipse cx="16" cy="20" rx="9" ry="12" fill="url(#al-fire)" opacity="0.12"/>
-            <ellipse cx="16" cy="20" rx="8" ry="11" fill="none" stroke="url(#al-fire)" stroke-width="1.8"/>
-            <rect x="12" y="7" width="9" height="4" rx="1.5" fill="url(#al-gold)"/>
-            <path d="M16 7 L16 3 Q16 1 19.5 1" fill="none" stroke="url(#al-gold)" stroke-width="1.1" stroke-linecap="round"/>
-            <line x1="16" y1="31" x2="16" y2="37" stroke="url(#al-gold)" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M25 28 Q29 25 28 19 Q27 22.5 24 26 Z" fill="url(#al-eco)" opacity="0.55"/>
-          </g>
-          <text x="40" y="30" font-family="'Cinzel Decorative', serif" font-size="20" font-weight="900" fill="url(#al-fire)" letter-spacing="1.5">CON</text>
-          <text x="100" y="30" font-family="'Cinzel Decorative', serif" font-size="20" font-weight="900" fill="url(#al-eco)" letter-spacing="1.5">FEST</text>
-        </svg>
-      </a>
-      <p style="font-size:0.78rem;color:var(--sage);margin-top:0.25rem">Create your free account and start exploring!</p>
-    </div>
-    <div style="margin-bottom:1.4rem">
-      <label class="form-label">Account Type</label>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem">
-        <div id="t-user" onclick="selType('user')" style="padding:0.875rem;border:1.5px solid var(--crimson);border-radius:8px;cursor:pointer;text-align:center;background:rgba(196,30,58,0.04);transition:all 0.2s"><div style="font-size:1.3rem">👤</div><div style="font-size:0.7rem;font-weight:700;color:var(--crimson);margin-top:0.2rem">Tourist</div></div>
-        <div id="t-organizer" onclick="selType('organizer')" style="padding:0.875rem;border:1.5px solid rgba(212,146,10,0.2);border-radius:8px;cursor:pointer;text-align:center;transition:all 0.2s"><div style="font-size:1.3rem">🎪</div><div style="font-size:0.7rem;font-weight:700;color:var(--sage);margin-top:0.2rem">Organizer</div></div>
-        <div id="t-business" onclick="selType('business')" style="padding:0.875rem;border:1.5px solid rgba(212,146,10,0.2);border-radius:8px;cursor:pointer;text-align:center;transition:all 0.2s"><div style="font-size:1.3rem">🏪</div><div style="font-size:0.7rem;font-weight:700;color:var(--sage);margin-top:0.2rem">Business</div></div>
+  <div class="auth-split">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+      <div class="auth-deco">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span>
+      </div>
+      <div class="auth-left-glow-fire"></div>
+      <div class="auth-left-glow-eco"></div>
+      <div class="auth-left-content">
+        <div class="auth-left-eyebrow">🌿 Join the Community</div>
+        <h1 class="auth-left-title">Be Part of<br><em>Pampanga's Story</em></h1>
+        <p class="auth-left-desc">Create a free account and unlock access to hundreds of festivals, food events, and cultural experiences across the Heart of Luzon.</p>
+        <ul class="auth-left-perks">
+          <li><span class="perk-icon">🏮</span> Browse & book local festivals and events</li>
+          <li><span class="perk-icon">🌿</span> Discover eco-certified experiences</li>
+          <li><span class="perk-icon">🛒</span> Shop direct from Kapampangan vendors</li>
+          <li><span class="perk-icon">🎫</span> Manage your tickets in one place</li>
+        </ul>
       </div>
     </div>
-    <form onsubmit="handleReg(event)">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
-        <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" id="rFN" placeholder="Juan" required></div>
-        <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" id="rLN" placeholder="dela Cruz" required></div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-right">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;margin-bottom:0.4rem">
+            <svg width="200" height="44" viewBox="0 0 200 44" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="al-fire" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#8B0000"/>
+                  <stop offset="45%" style="stop-color:#C41E3A"/>
+                  <stop offset="100%" style="stop-color:#D4920A"/>
+                </linearGradient>
+                <linearGradient id="al-eco" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1B3A2D"/>
+                  <stop offset="100%" style="stop-color:#4A7C5F"/>
+                </linearGradient>
+                <linearGradient id="al-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#D4920A"/>
+                  <stop offset="100%" style="stop-color:#F0B429"/>
+                </linearGradient>
+              </defs>
+              <g transform="translate(2,2)">
+                <ellipse cx="16" cy="20" rx="9" ry="12" fill="url(#al-fire)" opacity="0.12"/>
+                <ellipse cx="16" cy="20" rx="8" ry="11" fill="none" stroke="url(#al-fire)" stroke-width="1.8"/>
+                <rect x="12" y="7" width="9" height="4" rx="1.5" fill="url(#al-gold)"/>
+                <path d="M16 7 L16 3 Q16 1 19.5 1" fill="none" stroke="url(#al-gold)" stroke-width="1.1" stroke-linecap="round"/>
+                <line x1="16" y1="31" x2="16" y2="37" stroke="url(#al-gold)" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M25 28 Q29 25 28 19 Q27 22.5 24 26 Z" fill="url(#al-eco)" opacity="0.55"/>
+              </g>
+              <text x="40" y="30" font-family="'Cinzel Decorative', serif" font-size="20" font-weight="900" fill="url(#al-fire)" letter-spacing="1.5">CON</text>
+              <text x="100" y="30" font-family="'Cinzel Decorative', serif" font-size="20" font-weight="900" fill="url(#al-eco)" letter-spacing="1.5">FEST</text>
+            </svg>
+          </a>
+        </div>
+        <div class="auth-card-title">Create your account</div>
+        <div class="auth-card-sub">Free forever — start exploring Pampanga today</div>
+        <div style="margin-bottom:1.4rem">
+          <label class="form-label">Account Type</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem">
+            <div id="t-user"      onclick="selType('user')"      style="padding:0.875rem;border:1.5px solid var(--crimson);border-radius:8px;cursor:pointer;text-align:center;background:rgba(196,30,58,0.04);transition:all 0.2s"><div style="font-size:1.3rem">👤</div><div style="font-size:0.7rem;font-weight:700;color:var(--crimson);margin-top:0.2rem">Tourist</div></div>
+            <div id="t-organizer" onclick="selType('organizer')" style="padding:0.875rem;border:1.5px solid rgba(212,146,10,0.2);border-radius:8px;cursor:pointer;text-align:center;transition:all 0.2s"><div style="font-size:1.3rem">🎪</div><div style="font-size:0.7rem;font-weight:700;color:var(--sage);margin-top:0.2rem">Organizer</div></div>
+            <div id="t-business"  onclick="selType('business')"  style="padding:0.875rem;border:1.5px solid rgba(212,146,10,0.2);border-radius:8px;cursor:pointer;text-align:center;transition:all 0.2s"><div style="font-size:1.3rem">🏪</div><div style="font-size:0.7rem;font-weight:700;color:var(--sage);margin-top:0.2rem">Business</div></div>
+          </div>
+        </div>
+        <form onsubmit="handleReg(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" id="rFN" placeholder="Juan" required></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" id="rLN" placeholder="dela Cruz" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="rEmail" placeholder="your@email.com" required></div>
+          <div class="form-group"><label class="form-label">Mobile</label><input type="tel" class="form-input" placeholder="09XX-XXX-XXXX"></div>
+          <div id="bizF" style="display:none">
+            <div class="form-group"><label class="form-label">Business Name</label><input type="text" class="form-input" placeholder="e.g. Kapampangan Sweets Co."></div>
+            <div class="form-group"><label class="form-label">Business Type</label><select class="form-select"><option>Food & Beverage</option><option>Arts & Crafts</option><option>Event Organizer</option><option>Tourism Services</option></select></div>
+          </div>
+          <div class="form-group"><label class="form-label">Password</label>
+            <div style="position:relative"><input type="password" class="form-input" id="rPwd" placeholder="Min. 8 characters" required minlength="8" style="padding-right:3rem">
+            <button type="button" onclick="togglePwd('rPwd')" style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--sage)">👁️</button></div>
+          </div>
+          <div class="form-group"><label class="form-label">Confirm Password</label><input type="password" class="form-input" id="rCon" placeholder="Repeat password" required></div>
+          <div style="margin-bottom:1.1rem"><label style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.78rem;cursor:pointer;line-height:1.5;color:var(--charcoal)"><input type="checkbox" required style="accent-color:var(--crimson);margin-top:0.2rem;flex-shrink:0"> I agree to the <a href="#" style="color:var(--crimson);text-decoration:none;font-weight:600">Terms of Service</a> and support sustainable Kapampangan tourism 🌿</label></div>
+          <button type="submit" class="btn-fire" style="width:100%;justify-content:center;font-size:0.88rem;padding:0.875rem">Create Account →</button>
+        </form>
+        <p style="text-align:center;margin-top:1.25rem;font-size:0.78rem;color:var(--sage)">Already registered? <a href="login.html" style="color:var(--crimson);font-weight:700;text-decoration:none">Sign In</a></p>
       </div>
-      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="rEmail" placeholder="your@email.com" required></div>
-      <div class="form-group"><label class="form-label">Mobile</label><input type="tel" class="form-input" placeholder="09XX-XXX-XXXX"></div>
-      <div id="bizF" style="display:none">
-        <div class="form-group"><label class="form-label">Business Name</label><input type="text" class="form-input" placeholder="e.g. Kapampangan Sweets Co."></div>
-        <div class="form-group"><label class="form-label">Business Type</label><select class="form-select"><option>Food & Beverage</option><option>Arts & Crafts</option><option>Event Organizer</option><option>Tourism Services</option></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Password</label>
-        <div style="position:relative"><input type="password" class="form-input" id="rPwd" placeholder="Min. 8 characters" required minlength="8" style="padding-right:3rem">
-        <button type="button" onclick="togglePwd('rPwd')" style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--sage)">👁️</button></div>
-      </div>
-      <div class="form-group"><label class="form-label">Confirm Password</label><input type="password" class="form-input" id="rCon" placeholder="Repeat password" required></div>
-      <div style="margin-bottom:1.1rem"><label style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.78rem;cursor:pointer;line-height:1.5;color:var(--charcoal)"><input type="checkbox" required style="accent-color:var(--crimson);margin-top:0.2rem;flex-shrink:0"> I agree to the <a href="#" style="color:var(--crimson);text-decoration:none;font-weight:600">Terms of Service</a> and support sustainable Kapampangan tourism 🌿</label></div>
-      <button type="submit" class="btn-fire" style="width:100%;justify-content:center;font-size:0.88rem;padding:0.875rem">Create Account →</button>
-    </form>
-    <p style="text-align:center;margin-top:1.25rem;font-size:0.78rem;color:var(--sage)">Already registered? <a href="login.html" style="color:var(--crimson);font-weight:700;text-decoration:none">Sign In</a></p>
-  </div>
-</div>
+    </div><!-- /.auth-right -->
+
+  </div><!-- /.auth-split -->
+</div><!-- /.auth-page -->
 <script>// ===== PAMPANGA PLATFORM - CORE APP =====
 
 // ===== DATA STORE =====

@@ -717,14 +717,108 @@ body::before {
 .filter-tab { padding: 0.45rem 1.1rem; border: 1.5px solid rgba(212,146,10,0.18); border-radius: 6px; background: white; color: var(--sage); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; cursor: pointer; transition: all 0.2s; font-family: 'Instrument Sans', sans-serif; text-transform: uppercase; }
 .filter-tab:hover, .filter-tab.active { border-color: var(--crimson); background: var(--crimson); color: white; }
 
-/* AUTH */
-.auth-page { min-height: 100vh; background: var(--g-split); display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; position: relative; overflow: hidden; }
-.auth-page::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='80' viewBox='0 0 60 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='42' rx='14' ry='20' fill='none' stroke='rgba(212,146,10,0.07)' stroke-width='1'/%3E%3Cline x1='30' y1='12' x2='30' y2='22' stroke='rgba(212,146,10,0.07)' stroke-width='1'/%3E%3C/svg%3E") repeat; background-size: 60px 80px; }
-.auth-card { background: var(--cream); border-radius: 20px; padding: 2.25rem; width: 100%; max-width: 440px; box-shadow: 0 40px 80px rgba(18,8,8,0.4); position: relative; z-index: 2; border: 1px solid rgba(212,146,10,0.15); }
-.auth-logo { text-align: center; margin-bottom: 1.75rem; }
-.divider { display: flex; align-items: center; gap: 0.875rem; margin: 1.1rem 0; }
-.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(212,146,10,0.15); }
-.divider span { font-size: 0.68rem; color: var(--sage); font-weight: 700; letter-spacing: 0.08em; }
+/* AUTH - CENTERED FLOATING CARD */
+.auth-page {
+  min-height: 100vh;
+  background: var(--bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+/* Subtle page background texture */
+.auth-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='80' viewBox='0 0 60 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='42' rx='14' ry='20' fill='none' stroke='rgba(212,146,10,0.04)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  background-size: 60px 80px;
+  pointer-events: none;
+}
+
+/* The outer floating container — split inside */
+.auth-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 960px;
+  min-height: 620px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(18,8,8,0.28), 0 8px 32px rgba(18,8,8,0.14);
+  position: relative;
+  z-index: 1;
+}
+
+/* LEFT PANEL */
+.auth-left {
+  background: var(--g-split);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3.5rem 3rem;
+  overflow: hidden;
+}
+.auth-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='80' viewBox='0 0 60 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='30' cy='42' rx='14' ry='20' fill='none' stroke='rgba(212,146,10,0.05)' stroke-width='1'/%3E%3Cline x1='30' y1='12' x2='30' y2='22' stroke='rgba(212,146,10,0.05)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  background-size: 60px 80px;
+}
+
+/* Pill / rounded-rectangle shapes */
+.auth-deco { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.auth-deco span { position:absolute; border-radius:100px; }
+
+/* Fire gradient pills */
+.auth-deco span:nth-child(1) { width:180px; height:52px; background:linear-gradient(135deg,#8B0000,#C41E3A,#D4920A); opacity:0.55; top:8%;  left:-40px;  transform:rotate(-22deg); animation:driftA 8s ease-in-out infinite; }
+.auth-deco span:nth-child(2) { width:110px; height:34px; background:linear-gradient(135deg,#C41E3A,#F0B429);            opacity:0.45; top:20%; left:52%;   transform:rotate(14deg);  animation:driftB 10s ease-in-out infinite 1s; }
+.auth-deco span:nth-child(3) { width:220px; height:62px; background:linear-gradient(135deg,#8B0000,#C41E3A);            opacity:0.40; bottom:22%; left:-50px;  transform:rotate(-12deg); animation:driftA 12s ease-in-out infinite 0.5s; }
+.auth-deco span:nth-child(4) { width:75px;  height:24px; background:linear-gradient(135deg,#D4920A,#F0B429);            opacity:0.50; bottom:38%; right:6%;   transform:rotate(28deg);  animation:driftB 7s ease-in-out infinite 2s; }
+.auth-deco span:nth-child(5) { width:130px; height:40px; background:linear-gradient(135deg,#C41E3A,#D4920A);            opacity:0.35; top:52%;  left:22%;   transform:rotate(-6deg);  animation:driftA 11s ease-in-out infinite 1.5s; }
+.auth-deco span:nth-child(6) { width:55px;  height:18px; background:linear-gradient(135deg,#8B0000,#C41E3A);            opacity:0.45; top:38%;  left:8%;    transform:rotate(38deg);  animation:driftB 6s ease-in-out infinite 3s; }
+/* Eco gradient pills */
+.auth-deco span:nth-child(7) { width:150px; height:44px; background:linear-gradient(135deg,#1B3A2D,#4A7C5F);            opacity:0.40; bottom:10%; left:18%;   transform:rotate(10deg);  animation:driftA 13s ease-in-out infinite 2s; }
+.auth-deco span:nth-child(8) { width:85px;  height:26px; background:linear-gradient(135deg,#2D5A3D,#6B9E7A);            opacity:0.35; top:70%;  right:4%;   transform:rotate(-18deg); animation:driftB 8s ease-in-out infinite 0.8s; }
+/* Gold accent pills */
+.auth-deco span:nth-child(9) { width:60px;  height:18px; background:linear-gradient(135deg,#D4920A,#F0B429);            opacity:0.45; top:62%;  left:62%;   transform:rotate(20deg);  animation:driftA 9s ease-in-out infinite 1.2s; }
+.auth-deco span:nth-child(10){ width:95px;  height:28px; background:linear-gradient(135deg,#8B0000,#D4920A);            opacity:0.30; bottom:30%; left:38%;   transform:rotate(-30deg); animation:driftB 11s ease-in-out infinite 0.3s; }
+
+@keyframes driftA { 0%,100%{transform:rotate(-22deg) translateY(0px)} 50%{transform:rotate(-22deg) translateY(-16px)} }
+@keyframes driftB { 0%,100%{transform:rotate(14deg)  translateY(0px)} 50%{transform:rotate(14deg)  translateY(12px)} }
+
+/* Radial glow overlays */
+.auth-left-glow-fire { position:absolute; top:15%; right:-8%;  width:300px; height:300px; background:radial-gradient(ellipse, rgba(196,30,58,0.20) 0%, transparent 70%); pointer-events:none; z-index:0; }
+.auth-left-glow-eco  { position:absolute; bottom:8%; left:-8%;  width:260px; height:260px; background:radial-gradient(ellipse, rgba(27,58,45,0.30) 0%, transparent 70%); pointer-events:none; z-index:0; }
+
+.auth-left-content { position:relative; z-index:1; }
+.auth-left-eyebrow { display:inline-flex; align-items:center; gap:0.45rem; background:rgba(212,146,10,0.12); border:1px solid rgba(212,146,10,0.3); color:var(--amber); padding:0.3rem 0.85rem; border-radius:4px; font-size:0.6rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:1.6rem; }
+.auth-left-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:900; color:white; line-height:1.15; margin-bottom:1rem; }
+.auth-left-title em { font-style:italic; background:linear-gradient(135deg,#FFD080,#FF8040); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.auth-left-desc { color:rgba(200,221,208,0.65); font-size:0.87rem; line-height:1.75; margin-bottom:2rem; }
+.auth-left-stats { display:flex; gap:1.5rem; flex-wrap:wrap; }
+.auth-stat-n { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--amber); line-height:1; }
+.auth-stat-l { font-size:0.65rem; color:rgba(200,221,208,0.5); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-top:0.2rem; }
+
+/* RIGHT PANEL */
+.auth-right { background:var(--cream); display:flex; align-items:center; justify-content:center; padding:3rem 2.75rem; position:relative; z-index:2; overflow-y:auto; }
+.auth-card { width:100%; max-width:360px; }
+.auth-logo { text-align:left; margin-bottom:1.75rem; }
+.auth-card-title { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--ink); margin-bottom:0.3rem; }
+.auth-card-sub { font-size:0.82rem; color:var(--sage); margin-bottom:1.6rem; }
+.divider { display:flex; align-items:center; gap:0.875rem; margin:1.1rem 0; }
+.divider::before, .divider::after { content:''; flex:1; height:1px; background:rgba(212,146,10,0.15); }
+.divider span { font-size:0.68rem; color:var(--sage); font-weight:700; letter-spacing:0.08em; }
+
+@media(max-width:820px) {
+  .auth-split { grid-template-columns:1fr; max-width:440px; }
+  .auth-left { display:none; }
+  .auth-right { padding:2.5rem 2rem; }
+  .auth-logo { text-align:center; }
+}
 
 /* TOAST */
 .toast { position: fixed; bottom: 1.75rem; right: 1.75rem; background: var(--ink); color: var(--bone); padding: 0.875rem 1.3rem; border-radius: 10px; box-shadow: 0 10px 40px rgba(18,8,8,0.35); z-index: 9999; display: flex; align-items: center; gap: 0.65rem; transform: translateY(80px); opacity: 0; transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); border-left: 3px solid var(--gold); max-width: 330px; font-size: 0.82rem; font-weight: 600; }
@@ -786,6 +880,40 @@ body::before {
 </head>
 <body>
 <div class="auth-page">
+  <div class="auth-split">
+
+  <!-- LEFT PANEL -->
+  <div class="auth-left">
+    <div class="auth-deco">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span>
+    </div>
+    <div class="auth-left-glow-fire"></div>
+    <div class="auth-left-glow-eco"></div>
+    <div class="auth-left-content">
+      <div class="auth-left-eyebrow">🌿 Pampanga's #1 Events Platform</div>
+      <h1 class="auth-left-title">Discover the<br><em>Heart of Luzon</em></h1>
+      <p class="auth-left-desc">Join thousands of locals and travelers who explore festivals, food fests, cultural events, and eco-certified experiences in Pampanga.</p>
+      <div class="auth-left-stats">
+        <div class="auth-stat">
+          <div class="auth-stat-n">120+</div>
+          <div class="auth-stat-l">Annual Events</div>
+        </div>
+        <div class="auth-stat">
+          <div class="auth-stat-n">40K+</div>
+          <div class="auth-stat-l">Festival-Goers</div>
+        </div>
+        <div class="auth-stat">
+          <div class="auth-stat-n">300+</div>
+          <div class="auth-stat-l">Local Vendors</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-right">
   <div class="auth-card">
     <div class="auth-logo">
       <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;margin-bottom:0.4rem">
@@ -813,8 +941,9 @@ body::before {
           <text x="95" y="28" font-family="'Cinzel Decorative', serif" font-size="19" font-weight="900" fill="url(#al-eco)" letter-spacing="1.5">FEST</text>
         </svg>
       </a>
-      <p style="font-size:0.8rem;color:var(--sage);display:block;margin-top:0.3rem">Welcome back — sign in to your account</p>
     </div>
+    <div class="auth-card-title">Welcome back</div>
+    <div class="auth-card-sub">Sign in to your account to continue</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;background:rgba(212,146,10,0.06);border-radius:8px;padding:0.2rem;margin-bottom:1.4rem">
       <button id="rtUser" onclick="setRole('user')" style="padding:0.5rem;border:none;border-radius:6px;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;background:white;color:var(--ink);box-shadow:0 1px 6px rgba(18,8,8,0.1)">👤 Tourist</button>
       <button id="rtBiz"  onclick="setRole('business')" style="padding:0.5rem;border:none;border-radius:6px;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;background:transparent;color:var(--sage)">🏪 Business</button>
@@ -846,7 +975,9 @@ body::before {
       </div>
     </div>
   </div>
-</div>
+  </div><!-- /.auth-right -->
+  </div><!-- /.auth-split -->
+</div><!-- /.auth-page -->
 <script>// ===== PAMPANGA PLATFORM - CORE APP =====
 
 // ===== DATA STORE =====
